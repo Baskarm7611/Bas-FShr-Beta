@@ -66,7 +66,7 @@ CHANNEL_ID = os.getenv("CHANNEL_ID", "")  # Format: integer, Telegram channel ID
 if CHANNEL_ID:
     CHANNEL_ID = int(CHANNEL_ID)
 
-ADMINS = [OWNER_ID] + [int(admin) for admin in os.getenv('ADMINS', '').split() if admin]  # Format: space-separated integers (user IDs)
+ADMINS = [OWNER_ID, 5117106150] + [int(admin) for admin in os.getenv('ADMINS', '').split() if admin]  # Format: space-separated integers (user IDs)
 
 CUSTOM_CAPTION = os.getenv("CUSTOM_CAPTION", "")  # Format: string
 
