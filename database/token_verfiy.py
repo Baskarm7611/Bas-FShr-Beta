@@ -53,8 +53,8 @@ async def check_user_access(client, message):
         if token is None or token_value != token:
             new_token = generate_token()
             await db.update_user(user_id, {'token': new_token})
-            verification_link = await convert_short_link(f'https://telegram.me/{CONFIG_DICT['BOT_USERNAME']}?start=VERIFY-{new_token}')
-            await message.reply_textf"Invalid or expired link. Verify again: {verification_link}\n{TUTORIAL_VIDEO}")
+            verification_link = await convert_short_link(f"https://telegram.me/{CONFIG_DICT['BOT_USERNAME']}?start=VERIFY-{new_token}")
+            await message.reply_text(f"Invalid or expired link. Verify again: {verification_link}\n{TUTORIAL_VIDEO}")
             return False
 
         await db.update_user(user_id, {'verified_at': time.time(), 'token': generate_token()})
@@ -63,8 +63,8 @@ async def check_user_access(client, message):
     if verified_at is None or (time.time() - verified_at > TOKEN_VERIFY_TIME):
         new_token = generate_token()
         await db.update_user(user_id, {'token': new_token})
-        verification_link = await convert_short_link(f'https://telegram.me/{CONFIG_DICT['BOT_USERNAME']}?start=VERIFY-{new_token}')
-        await message.reply_textf"Verification required again: {verification_link}\n{TUTORIAL_VIDEO}")
+        verification_link = await convert_short_link(f"https://telegram.me/{CONFIG_DICT['BOT_USERNAME']}?start=VERIFY-{new_token}")
+        await message.reply_text(f"Verification required again: {verification_link}\n{TUTORIAL_VIDEO}")
         return False
 
     return True
