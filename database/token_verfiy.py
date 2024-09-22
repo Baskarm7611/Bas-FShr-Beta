@@ -59,6 +59,7 @@ async def check_user_access(client, message):
 
         await db.update_user(user_id, {'verified_at': time.time(), 'token': generate_token()})
         await message.reply_text(f"Verified successfully! You can access unlimited content for {format_duration(TOKEN_VERIFY_TIME)}.")
+        return True
         
     if verified_at is None or (time.time() - verified_at > TOKEN_VERIFY_TIME):
         new_token = generate_token()
