@@ -8,7 +8,7 @@ from config import DB_URL, bot_id
 
 
 dbclient = pymongo.MongoClient(DB_URL)
-database = dbclient[bot_id]
+database = dbclient[str(bot_id)]
 
 
 user_data = database['users']
