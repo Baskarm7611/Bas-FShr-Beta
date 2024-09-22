@@ -63,8 +63,9 @@ async def edit_var_value(client, query):
     await value_msg.delete()
     
     if value_msg.text.lower() in ['no', '/empty']:
-            new_value = False
-            await Db_Config.update_env_var(var_name, new_value)
+        new_value = False
+        await Db_Config.update_env_var(var_name, new_value)
+        CONFIG_DICT[var_name] = new_value
     elif var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
         new_value = value_msg.text.lower() == 'true'
         await Db_Config.update_env_var(var_name, value_msg.text)
