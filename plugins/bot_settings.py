@@ -10,7 +10,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 from pyrogram.errors import FloodWait
 from bot import Bot
 from config import ADMINS, CONFIG_DICT
-from database.database import add_user, del_user, full_userbase, present_user, getConfig, updateConfig
 from database.manage_config import Db_Config
 
 
