@@ -1,0 +1,20 @@
+# --- For-Bot-Working --------- #
+git+https://github.com/ThePhantomDev/pyrogram.git
+TgCrypto
+motor==2.5.1
+pyromod==1.5
+# --- For-Database ------------ #
+pymongo
+dnspython
+# --- For-Web-Response ------- #
+aiohttp
+
+python-dotenv
+#shortener
+cloudscraper
+
+#cache
+async-cache
+
+#shortener
+shortzy
