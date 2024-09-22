@@ -1,7 +1,6 @@
 #(©)Tamilgram
 
 
-
 import os
 import asyncio
 from pyrogram import Client, filters
@@ -61,17 +60,8 @@ async def edit_var_value(client, query):
     await query.message.edit(text=f"Send value for {var_name} or /empty for Disable")
     value_msg = await client.listen(query.from_user.id)
     await value_msg.delete()
-    
-    if value_msg.text.lower() in ['no', '/empty']:
-        new_value = False
-        await Db_Config.update_env_var(var_name, new_value)
-        CONFIG_DICT[var_name] = new_value
-    elif var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
-        new_value = value_msg.text.lower() == 'true'
-        await Db_Config.update_env_var(var_name, value_msg.text)
-        CONFIG_DICT[var_name] = new_value
 
-    elif var_name == 'SUB_CHANNELS':
+    if var_name == 'SUB_CHANNELS':
         if value_msg.text.lower() in ['no', '/empty']:
             new_value = False
             await Db_Config.update_env_var(var_name, new_value)
@@ -94,6 +84,15 @@ async def edit_var_value(client, query):
             value_text = "No Sub Channels Configured."
 
         text = f"Var : <b>{var_name}</b>\n\nCurrent Value:\n{value_text}"
+        
+    elif value_msg.text.lower() in ['no', '/empty']:
+        new_value = False
+        await Db_Config.update_env_var(var_name, new_value)
+        CONFIG_DICT[var_name] = new_value
+    elif var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
+        new_value = value_msg.text.lower() == 'true'
+        await Db_Config.update_env_var(var_name, value_msg.text)
+        CONFIG_DICT[var_name] = new_value
 
     elif var_name in ['AUTO_DELETE_TIME', 'TOKEN_VERIFY_TIME']:
         new_value = int(value_msg.text)
