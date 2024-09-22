@@ -16,7 +16,7 @@ class DbConfig:
             {"$set": {"value": value}},
             upsert=True
         )
-        os.environ[var_name] = value
+        os.environ[var_name] = str(value)
         print(f"Updated {var_name} to {value}")
 
     async def update_env_vars(self, vars_dict: dict):
