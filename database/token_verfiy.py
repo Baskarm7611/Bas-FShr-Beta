@@ -37,7 +37,7 @@ class UserDatabase:
 db = UserDatabase(DB_URL, str(bot_id))
 
 async def check_user_access(client, message):
-    if not IS_VERIFY:
+    if not TOKEN_VERIFY:
         return True
     user_id = message.from_user.id
     command = message.command[1] if len(message.command) > 1 else None
