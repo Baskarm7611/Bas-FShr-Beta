@@ -116,7 +116,7 @@ async def edit_var_value(client, query):
         }
         await Db_Config.update_env_var(var_name, text)
         CONFIG_DICT[var_name] = new_value
-        text = f"Var : <b>{var_name}</b>\n\nCurrent Value:\n{new_value['site'] new_value['api']}"
+        text = f"Var : <b>{var_name}</b>\n\nCurrent Value:\n{new_value['site']} {new_value['api']}"
 
     value = await Db_Config.get_env_var(var_name)
     
