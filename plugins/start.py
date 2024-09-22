@@ -9,8 +9,8 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
 from config import CONFIG_DICT, DISABLE_CHANNEL_BUTTON
-from helper_func import check_user_sub_status, encode, decode, get_messages
-from database.database import add_user, del_user, full_userbase, present_user, getConfig, updateConfig
+from helper_func import check_user_sub_status, encode, decode, get_messages, deleteMessage, get_readable_time
+from database.database import add_user, del_user, full_userbase, present_user
 from database.token_verfiy import check_user_access
 
 
@@ -77,13 +77,18 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                file_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                file_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
             except:
                 pass
+            if CONFIG_DICT['AUTO_DELETE']:
+                asyncio.create_task(deleteMessage(file_msg))
+        if CONFIG_DICT['AUTO_DELETE']:
+            delete_msg = await client.send_message(f"This Files Will Be Deleted After {get_readable_time (CONFIG_DICT['AUTO_DELETE_TIME'])}.")
+            asyncio.create_task(deleteMessage(delete_msg))
         return
     else:
         reply_markup = InlineKeyboardMarkup(
