@@ -4,7 +4,6 @@ from pyrogram import filters
 from config import ADMINS, BOT_STATS_TEXT, USER_REPLY_TEXT
 from datetime import datetime
 from helper_func import get_readable_time
-from database.database import getConfig, updateConfig
 from os import execl as osexecl
 from sys import executable
 
