@@ -1,7 +1,5 @@
 #(©)Tamilgram
 
-from aiohttp import web
-from plugins import web_server
 from os import path as ospath,remove as osremove
 import pyromod.listen
 from pyrogram import Client
@@ -43,8 +41,6 @@ class Bot(Client):
             sys.exit()
 
         self.set_parse_mode(ParseMode.HTML)
-        self.LOGGER(__name__).info(f"Bot Started {BOT_USERNAME}")
-        self.LOGGER(__name__).info(f"By Tamilgram Bots")
         
         CONFIGDICT = {
             'SUB_CHANNELS': SUB_CHANNELS,
@@ -64,18 +60,15 @@ class Bot(Client):
         }
         await Db_Config.update_env_vars(CONFIGDICT)
         self.LOGGER(__name__).info("Config Loaded To DB")
+        self.LOGGER(__name__).info(f"Bot Started {BOT_USERNAME}")
+        self.LOGGER(__name__).info(f"©️ Tamilgram Bots")
         self.username = usr_bot_me.username
-        #web-response
-        app = web.AppRunner(await web_server())
-        await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, PORT).start()
         if ospath.isfile(".restartmsg"):
-                    with open(".restartmsg") as f:
-                        chat_id, msg_id = map(int, f)
-                    msg = f"Bot Restarted Successfully❗\n"
-                    await self.edit_message_text(chat_id, msg_id, msg)
-                    osremove(".restartmsg")
+                with open(".restartmsg") as f:
+                    chat_id, msg_id = map(int, f)
+                msg = f"Bot Restarted Successfully❗\n"
+                await self.edit_message_text(chat_id, msg_id, msg)
+                osremove(".restartmsg")
     async def stop(self, *args):
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.")
