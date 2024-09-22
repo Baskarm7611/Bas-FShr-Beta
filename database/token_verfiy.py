@@ -34,7 +34,7 @@ class UserDatabase:
     async def update_user(self, user_id, updates):
         await self.collection.update_one({"user_id": user_id}, {"$set": updates})
 
-db = UserDatabase(DB_URL, bot_id)
+db = UserDatabase(DB_URL, str(bot_id))
 
 async def check_user_access(client, message):
     if not IS_VERIFY:
