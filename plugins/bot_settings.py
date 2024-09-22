@@ -58,7 +58,7 @@ async def edit_vars(client, query):
 async def edit_var_value(client, query):
     data = query.data.split()
     var_name = data[1]
-    await query.message.edit(text=f"Send value for {var_name} or /cancel {'/empty for Disable Force Sub' if var_name == 'SUB_CHANNELS' else ''}")
+    await query.message.edit(text=f"Send value for {var_name} or {'/empty for Disable Force Sub' if var_name == 'SUB_CHANNELS' else ''}")
     value_msg = await client.listen(query.from_user.id)
     await value_msg.delete()
     if var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
