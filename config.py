@@ -36,7 +36,7 @@ if not DB_URL:
 # Fetch environment variables from the database if available
 if DB_URL:
     conn = MongoClient(DB_URL)
-    db = conn[bot_id]
+    db = conn[str(bot_id)]
     col = db['configs']
     env_vars = {env['var_name']: env['value'] for env in col.find()}
     for key, value in env_vars.items():
