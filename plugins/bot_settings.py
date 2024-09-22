@@ -60,7 +60,7 @@ async def edit_var_value(client, query):
     var_name = data[1]
     await query.message.edit(text=f"Send value for {var_name} or /cancel {'/empty for Disable Force Sub' if var_name == 'SUB_CHANNELS' else ''}")
     value_msg = await client.listen(query.from_user.id)
-    
+    await value_msg.delete()
     if var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
         new_value = value_msg.text.lower() == 'true'
         await Db_Config.update_env_var(var_name, value_msg.text)
