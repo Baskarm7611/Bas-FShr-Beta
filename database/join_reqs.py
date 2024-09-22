@@ -7,7 +7,7 @@ from config import DB_URL, bot_id
 class JoinReqs:
     def __init__(self, DB_URL):
         self.client = motor.motor_asyncio.AsyncIOMotorClient(DB_URL)
-        self.db = self.client[bot_id]
+        self.db = self.client[str(bot_id)]
         self.col = self.db['TAMILGRAM-SUB']
 
     async def add_user(self, user_id, first_name, username, date, channels=[]):
