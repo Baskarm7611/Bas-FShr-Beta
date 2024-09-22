@@ -159,3 +159,14 @@ async def check_user_sub_status(client, message):
 async def convert_short_link(url):
     auth = Shortzy(CONFIG_DICT['SHORTENER']['api'], CONFIG_DICT['SHORTENER']['site'])
     return await auth.convert(url, silently_fail=True)
+
+
+async def deleteMessage(message, time=None, use_default=True):
+    if time and not use_default:
+        await asyncio.sleep(time)
+    elif use_default:
+        await asyncio.sleep(CONFIG_DICT['AUTO_DELETE_TIME'])
+    try:
+        await message.delete()
+    except Exception as e:
+        print(e)
