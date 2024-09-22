@@ -28,7 +28,9 @@ class Bot(Client):
     async def start(self):
         await super().start()
         usr_bot_me = await self.get_me()
-        CONFIG_DICT['BOT_USERNAME'] = usr_bot_me.username
+        BOT_USERNAME = usr_bot_me.username
+        print(BOT_USERNAME)
+        CONFIG_DICT['BOT_USERNAME'] = BOT_USERNAME
         self.uptime = datetime.now()
 
         try:
@@ -58,7 +60,8 @@ class Bot(Client):
             'TOKEN_VERIFY': TOKEN_VERIFY,
             'TOKEN_VERIFY_TIME': TOKEN_VERIFY_TIME,
             'TUTORIAL_VIDEO': TUTORIAL_VIDEO,
-            'CHANNEL_ID': CHANNEL_ID
+            'CHANNEL_ID': CHANNEL_ID,
+            'BOT_USERNAME': BOT_USERNAME
         }
         await Db_Config.update_env_vars(CONFIGDICT)
         self.LOGGER(__name__).info("Config Loaded To DB")
