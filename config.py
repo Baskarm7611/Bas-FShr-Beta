@@ -41,7 +41,7 @@ if DB_URL:
     env_vars = {env['var_name']: env['value'] for env in col.find()}
     for key, value in env_vars.items():
         current_value = os.getenv(key)
-        if current_value is None or current_value != str(value):
+        if current_value is None or current_value == str(value):
             os.environ[key] = str(value)
         else:
             logging.info(f"Skipping update for {key}, keeping the original value.")
