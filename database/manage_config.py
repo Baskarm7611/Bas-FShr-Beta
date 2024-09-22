@@ -7,7 +7,7 @@ from config import DB_URL, bot_id
 class DbConfig:
     def __init__(self, mongo_uri):
         self.client = AsyncIOMotorClient(mongo_uri)
-        self.db = self.client[bot_id]
+        self.db = self.client[str(bot_id)]
         self.collection = self.db['tamilgram-configs']
     
     async def update_env_var(self, var_name: str, value: str):
