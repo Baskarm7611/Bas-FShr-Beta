@@ -37,15 +37,12 @@ if not DB_URL:
 if DB_URL:
     conn = MongoClient(DB_URL)
     db = conn[str(bot_id)]
-    col = db['configs']
+    col = db['tamilgram-configs']
     env_vars = {env['var_name']: env['value'] for env in col.find()}
-    print(env_vars)
     for key, value in env_vars.items():
         current_value = os.getenv(key)
-        print(current_value)
         if value:
             os.environ[key] = str(value)
-            print(os.getenv(key))
         else:
             print(f"No Value Found In Db For {key} so use default")
     conn.close()
