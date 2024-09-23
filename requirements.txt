@@ -1,5 +1,5 @@
 # --- For-Bot-Working --------- #
-git+https://github.com/ThePhantomDev/pyrogram.git
+pyrofork
 TgCrypto
 motor==2.5.1
 pyromod==1.5
