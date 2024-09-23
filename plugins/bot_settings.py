@@ -70,7 +70,7 @@ async def edit_var_value(client, query):
             channel_ids = {}
             for line in lines:
                 channel_id, mode = line.split(maxsplit=1)
-                channel_ids[channel_id] = mode.lower() == 'rsub'
+                channel_ids[int(channel_id)] = mode.lower() == 'rsub'
             new_value = channel_ids
             await Db_Config.update_env_var(var_name, value_msg.text)
         CONFIG_DICT[var_name] = new_value
