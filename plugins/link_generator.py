@@ -38,7 +38,7 @@ async def batch(client: Client, message: Message):
 
     string = f"get-{f_msg_id * abs(client.db_channel.id)}-{s_msg_id * abs(client.db_channel.id)}"
     base64_string = await encode(string)
-    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if str(CONFIG_DICT['PERMANENT_DOMAIN']).lower() != "false" else f"https://telegram.me/{client.username}?start={base64_string}"
+    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     if SHORTENER:
         text=f"<b>Here is your link</b>\n\n<code>{link}</code>\n\n<code>{await convert_short_link(link)}</code>"
     else:
@@ -62,7 +62,7 @@ async def link_generator(client: Client, message: Message):
             continue
 
     base64_string = await encode(f"get-{msg_id * abs(client.db_channel.id)}")
-    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if str(CONFIG_DICT['PERMANENT_DOMAIN']).lower() != "false" else f"https://telegram.me/{client.username}?start={base64_string}"
+    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     if SHORTENER:
         text=f"<b>Here is your link</b>\n\n<code>{link}</code>\n\n<code>{await convert_short_link(link)}</code>"
     else:
@@ -85,7 +85,7 @@ async def channel_post(client: Client, message: Message):
     converted_id = post_message.id * abs(client.db_channel.id)
     string = f"get-{converted_id}"
     base64_string = await encode(string)
-    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if str(CONFIG_DICT['PERMANENT_DOMAIN']).lower() != "false" else f"https://telegram.me/{client.username}?start={base64_string}"
+    link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     if SHORTENER:
         text=f"<b>Here is your link</b>\n\n<code>{link}</code>\n\n<code>{await convert_short_link(link)}</code>"
     else:
