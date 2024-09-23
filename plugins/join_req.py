@@ -12,8 +12,9 @@ async def join_reqs(client, join_req: ChatJoinRequest):
     first_name = join_req.from_user.first_name
     username = join_req.from_user.username or "N/A"
     date = join_req.date
-
+    print("New Join Request")
     if chat_id in CONFIG_DICT['SUB_CHANNELS'].keys():
+        print("New Join Request Approved")
         user = await Join_Reqs.get_user(user_id)
         
         if user:
