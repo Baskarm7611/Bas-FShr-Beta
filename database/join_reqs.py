@@ -18,9 +18,13 @@ class JoinReqs:
 
     async def update_user(self, user_id, channels):
         try:
-            await self.col.update_one({"user_id": int(user_id), 'channels': channels}, upsert=True)
-        except:
-            pass
+            await self.col.update_one(
+                {"user_id": int(user_id)}, 
+                {"$set": {'channels': channels}, 
+                upsert=True
+            )
+        except Expection as e:
+            print(e)
 
     async def get_user(self, user_id):
         return await self.col.find_one({"user_id": int(user_id)})
