@@ -42,23 +42,6 @@ class Bot(Client):
 
         self.set_parse_mode(ParseMode.HTML)
         
-        CONFIGDICT = {
-            'SUB_CHANNELS': SUB_CHANNELS,
-            'AUTO_DELETE': AUTO_DELETE,
-            'AUTO_DELETE_TIME': AUTO_DELETE_TIME,
-            'PERMANENT_DOMAIN': PERMANENT_DOMAIN,
-            'ADMINS': ADMINS,
-            'CUSTOM_CAPTION': CUSTOM_CAPTION,
-            "START_MSG": START_MSG,
-            'FORCE_MSG': FORCE_MSG,
-            'PROTECT_CONTENT': PROTECT_CONTENT,
-            'SHORTENER': SHORTENER,
-            'TOKEN_VERIFY': TOKEN_VERIFY,
-            'TOKEN_VERIFY_TIME': TOKEN_VERIFY_TIME,
-            'TUTORIAL_VIDEO': TUTORIAL_VIDEO,
-            'CHANNEL_ID': CHANNEL_ID,
-        }
-        await Db_Config.update_env_vars(CONFIGDICT)
         self.LOGGER(__name__).info("Config Loaded To DB")
         self.LOGGER(__name__).info(f"Bot Started {BOT_USERNAME}")
         self.LOGGER(__name__).info(f"©️ Tamilgram Bots")
