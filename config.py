@@ -8,7 +8,7 @@ from logging.handlers import RotatingFileHandler
 from pymongo import MongoClient
 
 # Load environment variables
-load_dotenv('.env', override=True)
+load_dotenv('.env')
 
 # Initialize bot variables
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN", '')  # Format: "<bot_id>:<token>"
