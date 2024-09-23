@@ -20,7 +20,7 @@ class JoinReqs:
         try:
             await self.col.update_one(
                 {"user_id": int(user_id)}, 
-                {"$set": {'channels': channels}, 
+                {"$set": {'channels': channels}}, 
                 upsert=True
             )
         except Expection as e:
