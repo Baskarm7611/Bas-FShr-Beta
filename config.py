@@ -41,8 +41,10 @@ if DB_URL:
     env_vars = {env['var_name']: env['value'] for env in col.find()}
     for key, value in env_vars.items():
         current_value = os.getenv(key)
+        print(current_value)
         if value:
             os.environ[key] = str(value)
+            print(os.getenv(key))
         else:
             logging.info(f"No Value Found In Db For {key} so use default")
     conn.close()
