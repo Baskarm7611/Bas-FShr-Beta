@@ -150,10 +150,10 @@ async def check_user_sub_status(client, message):
         return True
 
     buttons = [
-        InlineKeyboardButton(f"{'Request' if mode else 'Join'} Channel {index + 1}", url=invite_link)
+        [InlineKeyboardButton(f"{'Request' if mode else 'Join'} Channel {index + 1}", url=invite_link)]
         for index, (invite_link, mode) in enumerate(invite_links)
     ]
-    
+
     await message.reply_text(
         text=CONFIG_DICT['FORCE_MSG'].format(mention=message.from_user.mention),
         reply_markup=InlineKeyboardMarkup(buttons)
