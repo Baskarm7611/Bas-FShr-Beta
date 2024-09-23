@@ -98,7 +98,7 @@ def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@AsyncLRU(maxsize=200)
+#@AsyncLRU(maxsize=200)
 async def check_rsub_status(client, message, user_id, channel_id):
     user = await Join_Reqs.get_user(user_id)
     if not user:
