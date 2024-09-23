@@ -104,6 +104,7 @@ async def check_rsub_status(client, message, user_id, channel_id):
     if not user:
         await Join_Reqs.add_user(user_id, message.from_user.first_name, message.from_user.username, message.date)
         user = await Join_Reqs.get_user(user_id)
+    print(user)
     if chats := user['channels']:
         return channel_id in chats
     return False
