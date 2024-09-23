@@ -92,7 +92,7 @@ USER_REPLY_TEXT = "❌ Don't send me messages directly, I'm only a File Share bo
 LOG_FILE_NAME = "filesharingbotbyWD.txt"  # Format: string, filename
 
 # Sub channels configuration
-SUB_CHANNELS = os.getenv('SUB_CHANNELS')  # Format: "channel_id mode" (mode as "rsub" or "fsub")
+SUB_CHANNEL = os.getenv('SUB_CHANNELS')  # Format: "channel_id mode" (mode as "rsub" or "fsub")
 if SUB_CHANNELS:
     SUB_CHANNELS = {int(line.split(maxsplit=1)[0]): line.split(maxsplit=1)[1].lower() == 'rsub' for line in SUB_CHANNELS.splitlines()}
 
