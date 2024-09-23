@@ -19,6 +19,7 @@ async def join_reqs(client, join_req: ChatJoinRequest):
         
         if user:
             current_channels = user.get('channels', [])
+            print(current_channels)
             if chat_id not in current_channels:
                 current_channels.append(chat_id)
                 await Join_Reqs.update_user(user_id, current_channels)
