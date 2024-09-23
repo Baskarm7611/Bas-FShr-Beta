@@ -41,8 +41,8 @@ class Bot(Client):
             sys.exit()
 
         self.set_parse_mode(ParseMode.HTML)
-        
-        self.LOGGER(__name__).info("Config Loaded To DB")
+        for config, val in CONFIG_DICT.items():
+            self.LOGGER(__name__).info(f"{config} : {val}")
         self.LOGGER(__name__).info(f"Bot Started {BOT_USERNAME}")
         self.LOGGER(__name__).info(f"©️ Tamilgram Bots")
         self.username = usr_bot_me.username
