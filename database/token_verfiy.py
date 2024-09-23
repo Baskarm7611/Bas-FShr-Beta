@@ -4,6 +4,7 @@ import motor.motor_asyncio
 import time
 import string
 import random
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import TOKEN_VERIFY, TOKEN_VERIFY_TIME, DB_URL, bot_id, TUTORIAL_VIDEO, CONFIG_DICT
 from helper_func import convert_short_link
 
@@ -65,7 +66,7 @@ async def check_user_access(client, message):
         new_token = generate_token()
         await db.update_user(user_id, {'token': new_token})
         verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}")
-        await message.reply_text(f"Your Ads Token is expired, refresh your token and try again. \n\nToken Timeout: 18 hours\n\nVerify Link : {verification_link}\n\nHow to Open Link : {TUTORIAL_VIDEO}")
+        await message.reply_text(f"Your Ads Token is expired, refresh your token and try again. \n\nToken Timeout: 18 hours\n\nVerify Link : {verification_link}\n\nHow to Open Link : {TUTORIAL_VIDEO}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Verify Link", url=verification_link)], [InlineKeyboardButton("How To Verify", url=TUTORIAL_VIDEO)]]))
         return False
 
     return True
