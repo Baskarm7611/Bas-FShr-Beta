@@ -63,7 +63,7 @@ async def edit_var_value(client, query):
 
     if var_name == 'SUB_CHANNELS':
         if value_msg.text.lower() in ['no', '/empty']:
-            new_value = False
+            new_value = None
             await Db_Config.update_env_var(var_name, new_value)
         else:
             lines = value_msg.text.split('\n')
@@ -86,7 +86,7 @@ async def edit_var_value(client, query):
         text = f"Var : <b>{var_name}</b>\n\nCurrent Value:\n{value_text}"
         
     elif value_msg.text.lower() in ['no', '/empty']:
-        new_value = False
+        new_value = None
         await Db_Config.update_env_var(var_name, new_value)
         CONFIG_DICT[var_name] = new_value
     elif var_name in ['AUTO_DELETE', 'PROTECT_CONTENT', 'TOKEN_VERIFY']:
