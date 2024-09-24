@@ -94,7 +94,7 @@ async def edit_var_value(client, query):
         await Db_Config.update_env_var(var_name, value_msg.text)
         CONFIG_DICT[var_name] = new_value
 
-    elif var_name in ['AUTO_DELETE_TIME', 'TOKEN_VERIFY_TIME']:
+    elif var_name in ['AUTO_DELETE_TIME', 'TOKEN_VERIFY_TIME', 'CHANNEL_ID']:
         new_value = int(value_msg.text)
         await Db_Config.update_env_var(var_name, new_value)
         CONFIG_DICT[var_name] = new_value
