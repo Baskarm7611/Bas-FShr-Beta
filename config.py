@@ -59,8 +59,8 @@ AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", 300))  # Format: integer, t
 TOKEN_VERIFY = str(os.getenv("TOKEN_VERIFY", "false")).lower() == "true"  # Format: "true" or "false"
 TOKEN_VERIFY_TIME = int(os.getenv("TOKEN_VERIFY_TIME", 300))  # Format: integer, time in seconds
 
-PERMANENT_DOMAIN = os.getenv("PERMANENT_DOMAIN", "https://google.com/")  # Format: URL
-TUTORIAL_VIDEO = os.getenv("TUTORIAL_VIDEO", "https://telegram/")  # Format: URL
+PERMANENT_DOMAIN = os.getenv("PERMANENT_DOMAIN", "")  # Format: URL
+TUTORIAL_VIDEO = os.getenv("TUTORIAL_VIDEO", "")  # Format: URL
 
 CHANNEL_ID = os.getenv("CHANNEL_ID", "")  # Format: integer, Telegram channel ID
 if CHANNEL_ID:
