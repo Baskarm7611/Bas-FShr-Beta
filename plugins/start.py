@@ -87,7 +87,7 @@ async def start_command(client: Client, message: Message):
             if CONFIG_DICT['AUTO_DELETE']:
                 asyncio.create_task(deleteMessage(file_msg))
         if CONFIG_DICT['AUTO_DELETE']:
-            delete_msg = await client.send_message(f"This Files Will Be Deleted After {get_readable_time (CONFIG_DICT['AUTO_DELETE_TIME'])}.")
+            delete_msg = await client.send_message(id, f"This Files Will Be Deleted After {get_readable_time (CONFIG_DICT['AUTO_DELETE_TIME'])}.")
             asyncio.create_task(deleteMessage(delete_msg))
         return
     else:
