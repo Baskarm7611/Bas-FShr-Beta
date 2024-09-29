@@ -161,8 +161,11 @@ async def check_user_sub_status(client, message):
     return False
 
 
-async def convert_short_link(url):
-    auth = Shortzy(CONFIG_DICT['SHORTENER']['api'], CONFIG_DICT['SHORTENER']['site'])
+async def convert_short_link(url, is_token=False):
+    if is_token:
+        auth = Shortzy(CONFIG_DICT['TOKEN_SHORTENER']['api'], CONFIG_DICT['TOKEN_SHORTENER']['site'])
+    else:
+        auth = Shortzy(CONFIG_DICT['SHORTENER']['api'], CONFIG_DICT['SHORTENER']['site'])
     return await auth.convert(url, silently_fail=True)
 
 

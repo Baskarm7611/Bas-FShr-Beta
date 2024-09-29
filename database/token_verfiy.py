@@ -54,7 +54,7 @@ async def check_user_access(client, message):
         if token is None or token_value != token:
             new_token = generate_token()
             await db.update_user(user_id, {'token': new_token})
-            verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}")
+            verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}", is_token=True)
             await message.reply_text(f"Invalid or expired link. Verify again: {verification_link}\n{TUTORIAL_VIDEO}")
             return False
 
@@ -65,7 +65,7 @@ async def check_user_access(client, message):
     if verified_at is None or (time.time() - verified_at > TOKEN_VERIFY_TIME):
         new_token = generate_token()
         await db.update_user(user_id, {'token': new_token})
-        verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}")
+        verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}", is_token=True)
         await message.reply_text(f"Your Ads Token is expired, refresh your token and try again. \n\nToken Timeout: {format_duration(TOKEN_VERIFY_TIME)}\n\nVerify Link : {verification_link}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Verify Link", url=verification_link)], [InlineKeyboardButton("How To Verify", url=TUTORIAL_VIDEO)]]), protect_content=True)
         return False
 

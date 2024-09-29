@@ -84,6 +84,10 @@ SHORTENER = os.getenv("SHORTENER", "")  # Format: "site api_key" (space-separate
 if SHORTENER:
     SHORTENER = dict(zip(['site', 'api'], SHORTENER.split()))
 
+TOKEN_SHORTENER = os.getenv("TOKEN_SHORTENER", "")  # Format: "site api_key" (space-separated)
+if TOKEN_SHORTENER:
+    TOKEN_SHORTENER = dict(zip(['site', 'api'], TOKEN_SHORTENER.split()))
+
 DISABLE_CHANNEL_BUTTON = os.getenv("DISABLE_CHANNEL_BUTTON", 'false').lower() == 'true'  # Format: "true" or "false"
 
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"  # Format: string, with placeholders
@@ -126,6 +130,7 @@ CONFIG_DICT = {
     'TOKEN_VERIFY': TOKEN_VERIFY,
     'TOKEN_VERIFY_TIME': TOKEN_VERIFY_TIME,
     'TUTORIAL_VIDEO': TUTORIAL_VIDEO,
-    'CHANNEL_ID': CHANNEL_ID
+    'CHANNEL_ID': CHANNEL_ID,
+    'TOKEN_SHORTENER': TOKEN_SHORTENER
 }
 CONFIG_DICT = dict(sorted(CONFIG_DICT.items(), key=lambda x: x[0]))
