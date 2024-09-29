@@ -41,7 +41,7 @@ async def batch(client: Client, message: Message):
     link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     text = f"<blockquote>Here is your link</blockquote>\n\n<code>{link}</code>"
     if SHORTENER:
-        text += f""\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
+        text += f"\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Start URL", url=f'{link}')]])
     await second_message.reply_text(text, quote=True, reply_markup=reply_markup)
 
@@ -64,7 +64,7 @@ async def link_generator(client: Client, message: Message):
     link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     text = f"<blockquote>Here is your link</blockquote>\n\n<code>{link}</code>"
     if SHORTENER:
-        text += f""\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
+       text += f"\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Start URL", url=f'{link}')]])
     await channel_message.reply_text(text, quote=True, reply_markup=reply_markup)
 
@@ -86,9 +86,8 @@ async def channel_post(client: Client, message: Message):
     link = f"{CONFIG_DICT['PERMANENT_DOMAIN']}{base64_string}" if CONFIG_DICT['PERMANENT_DOMAIN'] else f"https://telegram.me/{client.username}?start={base64_string}"
     text = f"<blockquote>Here is your link</blockquote>\n\n<code>{link}</code>"
     if SHORTENER:
-        text += f""\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
+        text += f"\n\n<blockquote>Here is Your Shorten Link</blockquote>\n\n<code>{await convert_short_link(link)}</code>"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Start URL", url=f'{link}')]])
-
     await reply_text.edit(text, reply_markup=reply_markup, disable_web_page_preview = True)
 
     if not DISABLE_CHANNEL_BUTTON:
