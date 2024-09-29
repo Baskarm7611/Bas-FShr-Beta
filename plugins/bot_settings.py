@@ -123,8 +123,8 @@ async def edit_var_value(client, query):
 
     value = await Db_Config.get_env_var(var_name)
     
-    if var_name not in ['SUB_CHANNELS', 'SHORTENER', 'TOKEN_SHORTENER']:
-        text = f"Var : <b>{var_name}</b>\n\nCurrent Value : <code>{value}</code>"
+    if var_name not in ['SUB_CHANNELS']:
+        text = f"Var : <b>{var_name}</b>\n\nCurrent Value : <code>{new_value}</code>"
     
     return await query.message.edit(
         text=text,
