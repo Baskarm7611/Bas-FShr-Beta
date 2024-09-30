@@ -132,6 +132,8 @@ async def check_user_sub_status(client, message):
 
     for channel_id, mode in CHANNELS.items():
         if mode:
+            if await check_fsub_status(client, user_id, channel_id):
+               continue
             if not await check_rsub_status(client, message, user_id, channel_id):
                 try:
                     link = global_invite_links[channel_id]
