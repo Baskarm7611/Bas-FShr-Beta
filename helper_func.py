@@ -155,6 +155,10 @@ async def check_user_sub_status(client, message):
         [InlineKeyboardButton(f"{'Request' if mode else 'Join'} Channel {index + 1}", url=invite_link)]
         for index, (invite_link, mode) in enumerate(invite_links)
     ]
+    if len(message.command) > 1:
+        buttons.append(
+            [InlineKeyboardButton("Try Again", url=f"https://telegram.me/{client.username}?start={message.command[1]}")]
+        )
 
     await message.reply_text(
         text=CONFIG_DICT['FORCE_MSG'].format(mention=message.from_user.mention),

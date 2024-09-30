@@ -1,9 +1,25 @@
 #(©)Tamilgram
 
 from pyrogram import Client, filters, enums
-from pyrogram.types import ChatJoinRequest
+from pyrogram.types import ChatJoinRequest, ChatMemberUpdated
 from database.join_reqs import Join_Reqs
 from config import ADMINS, CONFIG_DICT
+
+@Client.on_chat_member_updated()
+async def left_mambers(client, update):
+    user_id = update.from_user.id
+    chat_id = update.chat.id
+    if update.old_chat_member and update.old_chat_member.status == ChatMemberUpdated.MEMBER:
+        if chat_id in CONFIG_DICT['SUB_CHANNELS'].keys():
+            user = await Join_Reqs.get_user(user_id)
+            if user:
+                current_channels = user.get('channels', [])
+                if chat_id in current_channels:
+                    current_channels.remove(chat_id)
+                    await Join_Reqs.update_user(user_id, current_channels)
+            
+
+
 
 @Client.on_chat_join_request()
 async def join_reqs(client, join_req: ChatJoinRequest):
