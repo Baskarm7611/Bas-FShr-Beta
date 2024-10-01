@@ -9,7 +9,7 @@ from config import ADMINS, CONFIG_DICT
 async def left_mambers(client, update):
     user_id = update.from_user.id
     chat_id = update.chat.id
-    if update.old_chat_member and update.old_chat_member.status == ChatMemberUpdated.MEMBER:
+    if update.old_chat_member and update.old_chat_member.status == enums.ChatMemberStatus.MEMBER:
         if chat_id in CONFIG_DICT['SUB_CHANNELS'].keys():
             user = await Join_Reqs.get_user(user_id)
             if user:
