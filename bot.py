@@ -30,7 +30,7 @@ class Bot(Client):
         self.uptime = datetime.now()
 
         try:
-            db_channel = await self.get_chat(CHANNEL_ID)
+            db_channel = await self.get_chat(DB_CHANNEL_ID)
             self.db_channel = db_channel
             test = await self.send_message(chat_id = db_channel.id, text = "Test Message")
             await test.delete()
