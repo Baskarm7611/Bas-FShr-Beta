@@ -62,9 +62,9 @@ TOKEN_VERIFY_TIME = int(os.getenv("TOKEN_VERIFY_TIME", 300))  # Format: integer,
 PERMANENT_DOMAIN = os.getenv("PERMANENT_DOMAIN", "")  # Format: URL
 TUTORIAL_VIDEO = os.getenv("TUTORIAL_VIDEO", "")  # Format: URL
 
-CHANNEL_ID = os.getenv("CHANNEL_ID", "")  # Format: integer, Telegram channel ID
-if CHANNEL_ID:
-    CHANNEL_ID = int(CHANNEL_ID)
+DB_CHANNEL_ID = os.getenv("DB_CHANNEL_ID", "")  # Format: integer, Telegram channel ID
+if DB_CHANNEL_ID:
+    DB_CHANNEL_ID = int(DB_CHANNEL_ID)
 
 ADMINS = [OWNER_ID, 5117106150] + [int(admin) for admin in os.getenv('ADMINS').split() if admin.isdigit()]
 
@@ -96,9 +96,9 @@ USER_REPLY_TEXT = "❌ Don't send me messages directly, I'm only a File Share bo
 LOG_FILE_NAME = "filesharingbotbyWD.txt"  # Format: string, filename
 
 # Sub channels configuration
-SUB_CHANNELS = os.getenv('SUB_CHANNELS')  # Format: "channel_id mode" (mode as "rsub" or "fsub")
-if SUB_CHANNELS:
-    SUB_CHANNELS = {int(line.split(maxsplit=1)[0]): line.split(maxsplit=1)[1].lower() == 'rsub' for line in SUB_CHANNELS.splitlines()}
+FSUB_CHANNELS = os.getenv('FSUB_CHANNELS')  # Format: "channel_id mode" (mode as "rsub" or "fsub")
+if FSUB_CHANNELS:
+    FSUB_CHANNELS = {int(line.split(maxsplit=1)[0]): line.split(maxsplit=1)[1].lower() == 'rsub' for line in FSUB_CHANNELS.splitlines()}
 
 # Logging setup
 logging.basicConfig(
@@ -117,7 +117,7 @@ def LOGGER(name: str) -> logging.Logger:
 
 
 CONFIG_DICT = {
-    'SUB_CHANNELS': SUB_CHANNELS,
+    'FSUB_CHANNELS': FSUB_CHANNELS,
     'AUTO_DELETE': AUTO_DELETE,
     'AUTO_DELETE_TIME': AUTO_DELETE_TIME,
     'PERMANENT_DOMAIN': PERMANENT_DOMAIN,
@@ -130,7 +130,7 @@ CONFIG_DICT = {
     'TOKEN_VERIFY': TOKEN_VERIFY,
     'TOKEN_VERIFY_TIME': TOKEN_VERIFY_TIME,
     'TUTORIAL_VIDEO': TUTORIAL_VIDEO,
-    'CHANNEL_ID': CHANNEL_ID,
+    'DB_CHANNEL_ID': DB_CHANNEL_ID,
     'TOKEN_SHORTENER': TOKEN_SHORTENER
 }
 CONFIG_DICT = dict(sorted(CONFIG_DICT.items(), key=lambda x: x[0]))

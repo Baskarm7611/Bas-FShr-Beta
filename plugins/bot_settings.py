@@ -11,6 +11,12 @@ from bot import Bot
 from config import ADMINS, CONFIG_DICT
 from database.manage_config import Db_Config
 
+def format_buttons(og_btn):
+    buttons = []
+    for i in range(1, len(og_btn)+1, 2):
+        c_button = og_btn[i:i+2]
+        buttons.append(c_button)
+    return buttons
 
 @Bot.on_message(filters.command('settings') & filters.private & filters.user(ADMINS))
 async def bot_settings(client, message):
@@ -21,7 +27,7 @@ async def bot_settings(client, message):
                 InlineKeyboardButton(var_name, f"var {var_name}")
             ]
         )
-    await client.send_message(chat_id=message.chat.id, text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(buttons))
+    await client.send_message(chat_id=message.chat.id, text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(format_buttons(buttons)))
 
 
 @Bot.on_callback_query(filters.regex('^showvars'))
@@ -33,7 +39,7 @@ async def show_vars(client, query):
                 InlineKeyboardButton(var_name, f"var {var_name}")
             ]
         )
-    await query.message.edit(text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(buttons))
+    await query.message.edit(text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(format_buttons(buttons)))
 
 
 @Bot.on_callback_query(filters.regex('^var'))
@@ -61,7 +67,7 @@ async def edit_var_value(client, query):
     value_msg = await client.listen(query.from_user.id)
     await value_msg.delete()
 
-    if var_name == 'SUB_CHANNELS':
+    if var_name == 'FSUB_CHANNELS':
         if value_msg.text.lower() in ['no', '/empty']:
             new_value = ""
             await Db_Config.update_env_var(var_name, new_value)
@@ -94,7 +100,7 @@ async def edit_var_value(client, query):
         await Db_Config.update_env_var(var_name, value_msg.text)
         CONFIG_DICT[var_name] = new_value
 
-    elif var_name in ['AUTO_DELETE_TIME', 'TOKEN_VERIFY_TIME', 'CHANNEL_ID']:
+    elif var_name in ['AUTO_DELETE_TIME', 'TOKEN_VERIFY_TIME', 'DB_CHANNEL_ID']:
         new_value = int(value_msg.text)
         await Db_Config.update_env_var(var_name, new_value)
         CONFIG_DICT[var_name] = new_value
@@ -123,7 +129,7 @@ async def edit_var_value(client, query):
 
     value = await Db_Config.get_env_var(var_name)
     
-    if var_name not in ['SUB_CHANNELS']:
+    if var_name not in ['FSUB_CHANNELS']:
         text = f"Var : <b>{var_name}</b>\n\nCurrent Value : <code>{new_value}</code>"
     
     return await query.message.edit(
