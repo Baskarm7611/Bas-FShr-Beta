@@ -10,7 +10,7 @@ async def left_mambers(client, update):
     user_id = update.from_user.id
     chat_id = update.chat.id
     if update.old_chat_member and update.old_chat_member.status == enums.ChatMemberStatus.MEMBER:
-        if chat_id in CONFIG_DICT['SUB_CHANNELS'].keys():
+        if chat_id in CONFIG_DICT['FSUB_CHANNELS'].keys():
             user = await Join_Reqs.get_user(user_id)
             if user:
                 current_channels = user.get('channels', [])
@@ -28,7 +28,7 @@ async def join_reqs(client, join_req: ChatJoinRequest):
     first_name = join_req.from_user.first_name
     username = join_req.from_user.username or "N/A"
     date = join_req.date
-    if chat_id in CONFIG_DICT['SUB_CHANNELS'].keys():
+    if chat_id in CONFIG_DICT['FSUB_CHANNELS'].keys():
         user = await Join_Reqs.get_user(user_id)
         
         if user:

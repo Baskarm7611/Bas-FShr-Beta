@@ -124,7 +124,7 @@ async def update_invite_links(client, channel_id, mode):
     return invite.invite_link
 
 async def check_user_sub_status(client, message):
-    CHANNELS = CONFIG_DICT['SUB_CHANNELS']
+    CHANNELS = CONFIG_DICT['FSUB_CHANNELS']
     if not CHANNELS:
         return True
     user_id = message.from_user.id
