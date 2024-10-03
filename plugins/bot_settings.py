@@ -12,12 +12,9 @@ from config import ADMINS, CONFIG_DICT
 from database.manage_config import Db_Config
 
 def format_buttons(og_btn):
-    buttons = []
-    for i in range(1, len(og_btn)+1, 2):
-        c_button = og_btn[i:i+2]
-        buttons.append(c_button)
-    return buttons
-
+    return [og_btn[i : i + 2] for i in range(0, len(og_btn), 2)]
+    
+    
 @Bot.on_message(filters.command('settings') & filters.private & filters.user(ADMINS))
 async def bot_settings(client, message):
     buttons = []
