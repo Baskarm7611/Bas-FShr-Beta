@@ -12,18 +12,14 @@ from config import ADMINS, CONFIG_DICT
 from database.manage_config import Db_Config
 
 def format_buttons(og_btn):
-    return [og_btn[i : i + 2] for i in range(0, len(og_btn), 2)]
+    return InlineKeyboardMarkup([og_btn[i : i + 2] for i in range(0, len(og_btn), 2)])
     
     
 @Bot.on_message(filters.command('settings') & filters.private & filters.user(ADMINS))
 async def bot_settings(client, message):
     buttons = []
     for var_name in CONFIG_DICT:
-        buttons.append(
-            [
-                InlineKeyboardButton(var_name, f"var {var_name}")
-            ]
-        )
+        buttons.append(InlineKeyboardButton(var_name, f"var {var_name}")
     await client.send_message(chat_id=message.chat.id, text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(format_buttons(buttons)))
 
 
@@ -31,12 +27,8 @@ async def bot_settings(client, message):
 async def show_vars(client, query):
     buttons = []
     for var_name in CONFIG_DICT:
-        buttons.append(
-            [
-                InlineKeyboardButton(var_name, f"var {var_name}")
-            ]
-        )
-    await query.message.edit(text="Select A Variable To edit", reply_markup=InlineKeyboardMarkup(format_buttons(buttons)))
+        buttons.append(InlineKeyboardButton(var_name, f"var {var_name}")
+    await query.message.edit(text="Select A Variable To edit", reply_markup=format_buttons(buttons))
 
 
 @Bot.on_callback_query(filters.regex('^var'))
