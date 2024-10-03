@@ -70,9 +70,9 @@ ADMINS = [OWNER_ID, 5117106150] + [int(admin) for admin in os.getenv('ADMINS').s
 
 CUSTOM_CAPTION = os.getenv("CUSTOM_CAPTION", "")  # Format: string
 
-START_MSG = os.getenv("START_MSG", "Hello {first}\n\nI can store private files in Specified Channel and other users can access them via special links.")  # Format: string, with placeholders
+START_MSG = os.getenv("START_MSG", "<b>Hello {first}\n\nI can store private files in Specified Channel and other users can access them via special links.</b>")  # Format: string, with placeholders
 
-FORCE_MSG = os.getenv("FORCE_MSG", "Hello {first}\n\n<b>You need to join my Channel/Group to use me. Kindly please join the Channel.</b>")  # Format: string, with placeholders
+FORCE_MSG = os.getenv("FORCE_MSG", "<b>Hello {mention}\n\nYou need to join my Channel/Group to use me. Kindly please join the Channel.</b>")  # Format: string, with placeholders
 
 PROTECT_CONTENT = str(os.getenv('PROTECT_CONTENT', 'false')).lower() == "true"  # Format: "true" or "false"
 
