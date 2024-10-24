@@ -66,7 +66,7 @@ async def check_user_access(client, message):
         new_token = generate_token()
         await db.update_user(user_id, {'token': new_token})
         verification_link = await convert_short_link(f"https://telegram.me/{client.username}?start=VERIFY-{new_token}", is_token=True)
-        await message.reply_text(f"<b>Your Verify Link is expired, refreshed your Verify Link and try again.\n\nHow It's Working ?\n\nIf you Verify 1 Time, You Access Unlimited Files for Next {format_duration(TOKEN_VERIFY_TIME)}</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Verify Link", url=verification_link)], [InlineKeyboardButton("How To Verify", url=TUTORIAL_VIDEO)]]), protect_content=True)
+        await message.reply_text(f"<b>Your Verify Link is expired, refreshed your New Verify Link and try again.\n\nHow It's Working ?\n\nIf you Verify 1 Time, You Access Unlimited Files for Next {format_duration(TOKEN_VERIFY_TIME)}\n\nYour Verify Link is Here 👇</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Verify Link", url=verification_link)], [InlineKeyboardButton("How To Verify", url=TUTORIAL_VIDEO)]]), protect_content=True)
         return False
 
     return True
