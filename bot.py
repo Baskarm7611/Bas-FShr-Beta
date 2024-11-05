@@ -1,5 +1,5 @@
 #(©)Tamilgram
-
+import logging
 from os import path as ospath,remove as osremove
 import pyromod.listen
 from pyrogram import Client
@@ -8,6 +8,9 @@ import sys
 from datetime import datetime
 from database.manage_config import Db_Config
 from config import *
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 class Bot(Client):
     def __init__(self):
