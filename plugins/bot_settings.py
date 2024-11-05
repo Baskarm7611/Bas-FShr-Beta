@@ -33,7 +33,6 @@ async def show_vars(client, query):
 
 @Bot.on_callback_query(filters.regex('^var'))
 async def edit_vars(client, query):
-    print("yea")
     data = query.data.split()
     var_name = data[1]
     value = await Db_Config.get_env_var(var_name)
