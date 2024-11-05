@@ -9,8 +9,11 @@ from datetime import datetime
 from database.manage_config import Db_Config
 from config import *
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s: %(message)s'
+)
+logging.getLogger("pyrogram").setLevel(logging.INFO)
 
 class Bot(Client):
     def __init__(self):
