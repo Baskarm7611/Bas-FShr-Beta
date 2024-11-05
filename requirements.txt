@@ -2,7 +2,7 @@
 pyrofork
 TgCrypto
 motor
-pyromod
+pyromod==1.5
 # --- For-Database ------------ #
 pymongo
 dnspython
